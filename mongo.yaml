@@ -1,0 +1,26 @@
+1--use GestionEmployes
+
+2--show collections
+
+3-- db.employes.insertOne({ code: 1, nom: "Essabri", prenom: "Zakaria", age: 28, sal: 2500, ville: "Casa" })
+
+db.employes.insertMany([
+  { code: 2, nom: "Ahmed", prenom: "Dina", age: 32, sal: 3000, ville: "Marrakech" },
+  { code: 3, nom: "Saad", prenom: "Omar", age: 30, sal: 2200, ville: "Casa" },
+  { code: 4, nom: "Zahra", prenom: "Amine", age: 35, sal: 2700, ville: "Rabat" },
+  { code: 5, nom: "Karim", prenom: "Nadia", age: 29, sal: 2400, ville: "Tanger" }
+])
+
+
+4-- db.employes.find().pretty()
+db.employes.find({}, { code: 1, nom: 1, ville: 1 }) 
+db.employes.find({ prenom: "AHMED" }) 
+db.employes.find({ prenom: { $regex: '^D|D$' } })
+db.employes.find({ prenom: { $regex: '^D.{4}$' } })
+db.employes.find({ prenom: { $regex: '^[AEIOUaeiou].*[AEIOUaeiou]$' } })
+db.employes.find({ age: { $gt: 25 } }, { nom: 1, prenom: 1 })
+db.employes.countDocuments() :
+db.employes.find({ ville: { $in: ['Marrakech', 'Casa'] } }, { nom: 1, sal: 1 })
+db.employes.find({ sal: { $gt: 2000 } }, { code: 1 })
+14 -- 
+db.employes.find().sort({ sal: -1 }).limit(1)
